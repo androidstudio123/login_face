@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.du.lin.dao.CommodityDao">
+    <select id="findAll" resultType="com.du.lin.bean.commodity">
+        select * from commodity
+    </select>
+    <select id="findBycategory_id" resultType="com.du.lin.bean.commodity">
+        select * from commodity where category_id=#{category_id}
+    </select>
+    <select id="findBycategory_Id" resultType="com.du.lin.bean.commodity">
+        select * from commodity where category_id=#{category_id}
+    </select>
+    <select id="findByquailty" resultType="com.du.lin.bean.commodity">
+        select * from commodity where quailty=#{quailty}
+    </select>
+    <select id="Searchcommodity" resultType="com.du.lin.bean.commodity">
+        select * from commodity where descrip LIKE #{Search}
+    </select>
+    <select id="findcommodityBylogin_id" resultType="com.du.lin.bean.commodity">
+        select * from commodity where login_id=#{login_id}
+    </select>
+    <select id="findlogin_idBycommodity_id" resultType="com.du.lin.bean.commodity">
+        select * from commodity where id=#{id}
+    </select>
+    <insert id="save" parameterType="com.du.lin.bean.commodity">
+        insert into commodity values(null,#{name},#{descrip},#{type},#{category_id},#{price},#{quailty},#{login_id},#{originalPrice},#{filename})
+    </insert>
+
+    <insert id="deletecommByid" parameterType="com.du.lin.bean.commodity">
+       delete from commodity where id=#{id}
+    </insert>
+</mapper>

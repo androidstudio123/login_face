@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商城首页</title>
+    <link rel="stylesheet" href="/css/home.css" />
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+        body {
+            padding: 20px;
+        }
+        #container1 {
+            position: relative;
+            width: 1200px;
+            height: 400px;
+            border: 3px solid #333;
+            overflow: hidden;
+        }
+        #list {
+            position: absolute;
+            z-index: 1;
+            width: 8400px;
+            height: 400px;
+        }
+        #list img {
+            float: left;
+            width: 1200px;
+            height: 400px;
+        }
+        #buttons {
+            position: absolute;
+            left: 250px;
+            bottom: 20px;
+            z-index: 2;
+            height: 10px;
+            width: 100px;
+        }
+        #buttons span {
+            float: left;
+            margin-right: 5px;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+        #buttons .on {
+            background: orangered;
+        }
+        .arrow {
+            position: absolute;
+            top: 180px;
+            z-index: 2;
+            display: none;
+            width: 40px;
+            height: 40px;
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 39px;
+            text-align: center;
+            color: #fff;
+            background-color: RGBA(0, 0, 0, .3);
+            cursor: pointer;
+        }
+        .arrow:hover {
+            background-color: RGBA(0, 0, 0, .7);
+        }
+        #container:hover .arrow {
+            display: block;
+        }
+        #prev {
+            left: 20px;
+        }
+        #next {
+            right: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        /* 知识点：        */
+        /*       this用法 */
+        /*       DOM事件 */
+        /*       定时器 */
+        window.onload = function () {
+            var container = document.getElementById('container');
+            var list = document.getElementById('list');
+            var buttons = document.getElementById('buttons').getElementsByTagName('span');
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+            var index = 1;
+            var timer;
+            function animate(offset) {
+                //获取的是style.left，是相对左边获取距离，所以第一张图后style.left都为负值，
+                //且style.left获取的是字符串，需要用parseInt()取整转化为数字。
+                var newLeft = parseInt(list.style.left) + offset;
+                list.style.left = newLeft + 'px';
+                //无限滚动判断
+                if (newLeft > -1200) {
+                    list.style.left = -8400 + 'px';
+                }
+                if (newLeft < -8400) {
+                    list.style.left = -1200 + 'px';
+                }
+            }
+            function play() {
+                //重复执行的定时器
+                timer = setInterval(function () {
+                    next.onclick();
+                }, 2000)
+            }
+            function stop() {
+                clearInterval(timer);
+            }
+            function buttonsShow() {
+                //将之前的小圆点的样式清除
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].className == "on") {
+                        buttons[i].className = "";
+                    }
+                }
+                //数组从0开始，故index需要-1
+                buttons[index - 1].className = "on";
+            }
+            prev.onclick = function () {
+                index -= 1;
+                if (index < 1) {
+                    index = 5
+                }
+                buttonsShow();
+                animate(1200);
+            };
+            next.onclick = function () {
+                //由于上边定时器的作用，index会一直递增下去，我们只有5个小圆点，所以需要做出判断
+                index += 1;
+                if (index > 5) {
+                    index = 1
+                }
+                animate(-1200);
+                buttonsShow();
+            };
+            for (var i = 0; i < buttons.length; i++) {
+                (function (i) {
+                    buttons[i].onclick = function () {
+                        /*  这里获得鼠标移动到小圆点的位置，用this把index绑定到对象buttons[i]上，去谷歌this的用法  */
+                        /*  由于这里的index是自定义属性，需要用到getAttribute()这个DOM2级方法，去获取自定义index的属性*/
+                        var clickIndex = parseInt(this.getAttribute('index'));
+                        var offset = 1200 * (index - clickIndex); //这个index是当前图片停留时的index
+                        animate(offset);
+                        index = clickIndex; //存放鼠标点击后的位置，用于小圆点的正常显示
+                        buttonsShow();
+                    }
+                })(i)
+            }
+            container.onmouseover = stop;
+            container.onmouseout = play;
+            play();
+        }
+    </script>
+</head>
+<body>
+        <nav class="navbar">
+            <!--nav表示导航链接的标签-->
+            <div class="nav-info" style="color: blue">
+                <a th:href="@{/myMessage(login_id=${session.id})}" class="username"><label th:text="${session.username}" ></label></a>
+                <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+                <a href="/logout" class="logout">[ 退 出 ]</a>
+            </div> <!-- nav-info -->
+
+            <form action="Searchcommodity" method="get">
+                <div class="nav-search">
+                    <a href="#"><img class="logo" src="/img/logo2.png"></a>
+                    <div class="search-form">
+                        <input id="search-input" name="Search" class="searchIn" placeholder="搜商品..." required autofocus>
+                        <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
+                        <button type="submit" id="search-button" class="searchBtn">搜索</button>
+                    </div>
+                </div><!--  nav-search -->
+            </form>
+
+
+            <ul class="menu">
+                <li><a class="active" href="#">首页</a></li>
+                <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+                <li><a href="/goAskcomm">求购区</a></li>
+                <li><a href="#">服务区</a></li>
+            </ul>
+        </nav>
+
+
+        <div class="carousel">
+            <div class="book-guide">
+                <h4>商品导航</h4>
+                <ul class="book-class">
+                    <th th:each ="category :${categories}">
+                        <!--thymeleaf的锚点  th:href="@{值}"-->
+                        <!--有的时候我们不止需要从model中进行取值，还需写字符串与model中的值进行拼接，写法为
+th:href="@{'字符串'+${model中的nam值}}"。-->
+                        <li><a th:href="@{'#'+${category.key}}" title="book-part-${category.key}" ><label th:text="${category.value}" ></label></a></li>
+                    </th>
+                </ul>
+            </div>
+
+            <div id="container1">
+                <div id="list" style="left: -1200px;">
+                    <img src="/img/Lunbo/5.jpg" alt="1"/>
+                    <img src="/img/Lunbo/1.jpg" alt="1"/>
+                    <img src="/img/Lunbo/2.jpg" alt="2"/>
+                    <img src="/img/Lunbo/3.jpg" alt="3"/>
+                    <img src="/img/Lunbo/4.jpg" alt="4"/>
+                    <img src="/img/Lunbo/5.jpg" alt="5"/>
+                    <img src="/img/Lunbo/1.jpg" alt="5"/>
+                </div>
+                <div id="buttons">
+                    <span index="1" class="on"></span>
+                    <span index="2"></span>
+                    <span index="3"></span>
+                    <span index="4"></span>
+                    <span index="5"></span>
+                </div>
+                <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+                <a href="javascript:;" id="next" class="arrow">&gt;</a>
+            </div>
+
+        </div><!-- carousel -->
+
+        <!-- 图书分类 -->
+        <div id="container">
+
+            <th th:each ="category:${categories}">
+                <div class="book-part" th:id="${category.key}">
+
+                    <h3 class="book-title"><a href="#">| <label th:text="${category.value}" ></label></a></h3>
+                    <!--<a class="more" href="goBookStore?id=${category.key}">     > > 更多</a>-->
+                  <a  class="more" th:href="@{/gocomm(category_id=${category.key})}">    > > 更多 </a>
+
+
+                    <ul class="book-lists" >
+                        <!--使用list进行循环，然后判断list.get(category_id)是否和category.key相等，相等则输出-->
+                        <div th:each="comm,commstat:${commodities}"  >
+
+                        <div th:if="${comm.getCategory_id()} eq ${category.key} ">
+                            <div th:if="${commstat.count} lt ${7}">
+                            <li class="book-list" >
+                                <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm.getId()})}" class="book-pic" target="_blank">
+                                    <img th:src="@{'/img/comm/'+${comm.getFilename()}}"/>
+                                </a>
+
+                                <a href="#" class="book-info">
+                                    <h5 class="book-name"> <label th:text="${comm.getName()}" ></label></h5>
+                                    <span class="book-detail"><label th:text="${comm.getDescrip()}" ></label></span>
+                                </a>
+
+                                <span class="book-price">￥<label th:text="${comm.getPrice()}" ></label>
+                            <a href="#" class="book-buy">立即下单</a>
+                        </span>
+                            </li>
+                            </div>
+                        </div>
+
+                        </div>
+
+                    </ul><!--  book-list end -->
+
+                </div><!--  book-part end -->
+            </th>
+        </div> <!-- contain <!-- container end-->
+       <footer>
+            <a href="#">©2018-2019 二手交易商城</a>
+            <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
