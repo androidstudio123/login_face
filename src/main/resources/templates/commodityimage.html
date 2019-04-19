@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/commodityimage.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a th:href="@{/loginin}" class="active">首页</a></li>
+            <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+            <li><a href="/goAskcomm">求购区</a></li>
+            <li><a href="#">服务区</a></li>
+        </ul>
+    </div><!-- nav-menu -->
+
+    <div class="nav-search">
+        <form action="Searchcommodity" method="get">
+            <input type="search" class="searchIn" name="Search" placeholder="搜商品..." required autofocus>
+            <button class="search-logo"><img src="/img/search2.png"></button>
+        </form>
+    </div>
+
+    <div class="nav-info">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="logout.do" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info-end -->
+</nav>
+
+<div class="container">
+    <div id="book-pic">
+        <div class="book-big">
+            <img th:src="@{'/img/comm/'+${loginid.getFilename()}}"/>
+        </div>
+        <span class="tip"></span>
+    </div> <!-- book-pic-end -->
+
+    <div id="book-info">
+        <span class="book-name"><label th:text="${loginid.getName()}"></label></span>
+        <span class="book-publish"></span>
+        <span class="book-price">
+				<p>售价 <a class="final-price">￥<label th:text="${loginid.getPrice()}"></label></a></p>
+				<p>定价 <a class="original-price">￥<label th:text="${loginid.getOriginalPrice()}"></label> </a></p>
+				<p>品相 <a class="condition"><label th:text="${loginid.getQuailty()}"></label></a></p>
+			</span>
+        <span class="book-descr">
+				<p>商品描述<a class="book-desc"><label th:text="${loginid.getDescrip()}"></label></a></p>
+				<p>上书时间<a class="upload-time">2018-11-28</a></p>
+			</span>
+        <span class="buy-now">立即联系卖家进行购买</span>
+    </div> <!-- book-info-end -->
+
+    <div id="seller-info">
+        <a class="seller-name"></a>
+        <span class="seller-span1">
+				联系<a class="seller-chat">在线联系</a>
+			</span>
+        <span class="seller-span2">
+				<p>电话<a class="seller-num"></a></p>
+				<p>宿舍<a class="seller-adr"></a></p>
+				<p>好评率<a class="seller-appraise">90.5%</a></p>
+			</span>
+        <span class="seller-span3">
+				<p>[ 去看看卖家的二手书 ]</p>
+			</span>
+    </div><!-- seller-info-end -->
+    <div id="book-content">
+        <span class="book-tip">目送共由七十四篇散文组成，是为一本极具亲情、感人至深的文集。由父亲的逝世、母亲的苍老、儿子的离开、朋友的牵挂、兄弟的携手共行，写出失败和脆弱、失落和放手，写出缠绵不舍和绝然的虚无。正如作者所说：“我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影。</span>
+    </div>
+</div><!--  container -->
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

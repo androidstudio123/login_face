@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的信息</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/mycommodityshelf.css">
+    <script type="text/javascript" src="/js/jquery-3.2.js"></script>
+    <script type="text/javascript" src="/js/myBookshelf.js"></script>
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a th:href="@{/loginin}">首页</a></li>
+            <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+            <li><a href="/goAskcomm">求购区</a></li>
+            <li><a href="#">服务区</a></li>
+        </ul>
+    </div><!-- nav-menu -->
+
+    <div class="nav-search">
+        <form action="Searchcommodity" method="get">
+            <input type="search" class="searchIn" name="Search" placeholder="搜商品..." required autofocus>
+            <button class="search-logo"><img src="/img/search2.png"></button>
+        </form>
+    </div>
+
+    <div class="nav-info">
+        <a th:href="@{/myMessage(login_id=${session.id})}" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="/logout" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info-end -->
+</nav>
+
+
+
+<div class="person-info">
+<p>
+<a href="#" class="name"><label th:text="${my.getUsername()}"></label></a>
+</p>
+<input type="hidden" id="sexInput" th:value="${my.getSex()}">
+<p>
+<a href="#" class="sex" id="sexText">男</a><img src="/img/boy.png" id="sex-pic">
+</p>
+<p class="set">
+<a href="#" class="edit">编辑个人主页</a>
+<img class="set-icon" src="<%=request.getContextPath()%>/img/setting.png">
+</p>
+<div class="contact">
+<p>
+<span class="call-icon"></span>
+联&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：
+<a href="#" class="num"></a></p>
+<p>
+<span class="address-icon"></span>
+住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：<a href="#"  class="address"></a>
+</p>
+<p>
+<span class="major-icon"></span>
+年级专业：<a  href="#" class="major"></a>
+</p>
+</div>
+</div><!-- person-info-end -->
+
+<!--&lt;!&ndash; 书摊和求书选项卡 &ndash;&gt;-->
+<!--<div class="card-btn">-->
+    <!--<span title="sell-book" id="sell-btn" class="active">我的商品摊</span>-->
+    <!--<span title="ask-book" id="ask-btn">我的求购</span>-->
+    <!--<p class="upload-icon"></p>-->
+    <!--<a id="sell-upload" th:href="@{/upload}">上传商品至商品摊</a>-->
+    <!--<a id="ask-upload" href="goUpload.do?bookType=0">上传求购信息</a>-->
+    <!--<a id="delete-book" href="#">删除二手商品</a>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; 我的书摊 &ndash;&gt;-->
+<!--<div id="container">-->
+
+    <!--<div id="sell-book">-->
+        <!--<ul class="book-ul">-->
+            <!--<th th:each="shelfs:${page.list}">-->
+                <!--<li class="book-list">-->
+                    <!--<p class="book-pic">-->
+                        <!--&lt;!&ndash;<a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm1.getId()})}" class="book-pic" target="_blank">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<img th:src="@{'/img/comm/'+${shelfs.getId()}+'.jpg'}"/>&ndash;&gt;-->
+                        <!--<img th:src="@{'/img/comm/'+${shelfs.getFilename()}}"/>-->
+                    <!--</p>-->
+                    <!--<h5 class="book-name"><label th:text="${shelfs.getName()}"></label></h5>-->
+                    <!--<form>-->
+                        <!--<input type="text" name="book-id" class="book-id" th:value="${shelfs.getId()}">-->
+                    <!--</form>-->
+                    <!--<span class="delete-btn"></span>-->
+                    <!--<a href="/books/renewal/${book.getId()}" class="edit-btn"></a>-->
+                    <!--<div class="book-detail">-->
+                        <!--<p>原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="original-price">￥<label th:text="${shelfs.getOriginalPrice()}"></label></span></p>-->
+                        <!--<p>售&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="book-price">￥<label th:text="${shelfs.getPrice()}"></label></span></p>-->
+                        <!--<p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相：<span class="book-condition"><label th:text="${shelfs.getDescrip()}"></label></span></p>-->
+                        <!--<p>商品描述：<span class="book-desc"><label th:text="${shelfs.getQuailty()}"></label></span></p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</th>-->
+        <!--</ul>-->
+    <!--</div> &lt;!&ndash; sell-book-end &ndash;&gt;-->
+
+    <!--<span class="page-btn" style="text-align: center">-->
+        <!--<a th:href="@{/myTransanction(login_id=${session.id},start=0)}">[首  页]</a>-->
+        <!--<a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum -1})}">[上一页]</a>-->
+        <!--<a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum+1})}">[下一页]</a>-->
+        <!--<a th:href="@{/myTransanction(login_id=${session.id},start=${page.pages})}">[末  页]</a>-->
+    <!--</span>-->
+
+
+
+    <!-- 我的求书 -->
+    <!--<div id="ask-book">-->
+    <!--<ul class="book-ul">-->
+    <!--<th th:each="">-->
+    <!--<li class="book-list">-->
+    <!--<p class="book-pic">-->
+    <!--<img th:src="@{'/img/comm/'+${session.username.getId()}+'.jpg'}">-->
+    <!--</p>-->
+    <!--<h5 class="book-name"></h5>-->
+    <!--<a href="#" class="edit-btn"></a>-->
+    <!--<div class="book-detail">-->
+    <!--<p>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：<span class="book-author"></span></p>-->
+    <!--<p>出&nbsp; 版&nbsp;社：<span class="book-press"></span></p>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</th>-->
+    <!--</ul>-->
+    <!--</div>&lt;!&ndash; ask-book-end&ndash;&gt;-->
+    <!--</div> &lt;!&ndash; container-end &ndash;&gt;-->
+
+
+    <footer>
+        <a href="#">©2018-2019 二手交易商城</a>
+        <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+    </footer>
+</body>
+</html>

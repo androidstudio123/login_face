@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传商品到我的商品架</title>
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/upload.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-menu">
+        <ul class="menu">
+            <li><a th:href="@{/loginin}" >首页</a></li>
+            <li><a th:href="@{/goodcomm(quailty=${'good'})}">商品良品</a></li>
+            <li><a href="/goAskcomm">求购区</a></li>
+            <li><a href="#">服务区</a></li>
+        </ul>
+    </div><!-- nav-menu -->
+
+    <div class="nav-search">
+        <form action="Searchcommodity" method="get">
+            <input type="search" class="searchIn" name="Search" placeholder="搜商品..." required autofocus>
+            <button class="search-logo"><img src="/img/search2.png"></button>
+        </form>
+    </div>
+
+    <div class="nav-info">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的商品架</a>
+        <a href="/logout" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info-end -->
+</nav>
+
+
+
+<div class="titleName">
+    <h3>上传二手商品</h3>
+    <p>设置二手商品信息</p>
+</div>
+
+<div class="container">
+    <form action="savecomm" method="post" class="upload-form" enctype="multipart/form-data">
+        <p>
+            <span class="pic-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            上传商品图片： <input type="file"  name="file" required autofocus>
+        </p>
+        <p>
+            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            商品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" name="name" required autofocus>
+        </p>
+        <p>
+            <span class="name-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类：<select id="id" name="type" required autofocus>
+            <th th:each="categotys,count:${categoryLists}">
+                <!--<input type="hidden" name="category_id" th:value="${categotys.getId()}">-->
+                <option>
+                    <label  th:text="${categotys.getName()}" />
+                </option>
+                <!--<option type="hidden" name="category_id" th:value="${categotys.getId()}">-->
+            </th>
+            </select>
+        </p>
+        <!--<input type="hidden" name="category_id" th:value="">-->
+        <input type="hidden" name="login_id" th:value="${session.id}">
+        <p>
+            <span class="origin-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            商&nbsp;品&nbsp;&nbsp;原&nbsp;价：<input type="text" name="price">
+        </p>
+        <p>
+            <span class="price-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            商&nbsp;品&nbsp;&nbsp;售&nbsp;价：<input type="text" name="originalPrice">
+        </p>
+
+        <p>
+            <span class="time-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            生&nbsp;产&nbsp;&nbsp;时&nbsp;间：<input type="month" name="Date">
+        </p>
+        <p>
+            <span class="condition-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            商&nbsp;品&nbsp;&nbsp;品&nbsp;相：<input type="text" name="degree">
+        </p>
+        <p>
+            <span class="desc-icon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            商&nbsp;品&nbsp;&nbsp;描&nbsp;述：<input type="text" name="descrip">
+        </p>
+
+        <button type="submit" class="btn btn-success col-lg-12" >提交</button>
+    </form>
+</div>
+
+<dialog id="modal-dialog">
+    <div id="modal-text"></div>
+    <img class="modal-close-icon" src="<%=request.getContextPath()%>/img/close.png">
+    <div  class="modal-close">
+        <img src="<%=request.getContextPath()%>/img/success.png">
+    </div>
+</dialog>
+
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索页面</title>
+    <link rel="stylesheet" type="text/css"href="/css/commodity.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-info" style="color: blue">
+        <a href="#" class="username"><label th:text="${session.username}" ></label></a>
+        <a th:href="@{/myTransanction(login_id=${session.id})}" class="bookshelf">||&nbsp;&nbsp;&nbsp;我的交易</a>
+        <a href="/logout" class="logout">[ 退 出 ]</a>
+    </div> <!-- nav-info -->
+
+    <form action="Searchcommodity" method="get">
+        <div class="nav-search">
+            <a href="/home"><img class="logo" src="/img/logo2.png"></a>
+            <div class="search-form">
+                <input id="search-input" name="Search" type="search" class="searchIn" placeholder="搜商品..." required autofocus>
+                <a href="#" class="search-logo">| &nbsp;<img src="/img/search.png"></a>
+                <button type="submit" id="search-button" class="searchBtn">搜索</button>
+            </div>
+        </div><!--  nav-search -->
+    </form>
+
+    <ul class="menu">
+        <li><a th:href="@{/loginin}">首页</a></li>
+        <li><a class="active">商品良品</a></li>
+        <li><a href="/goAskcomm">求购区</a></li>
+        <li><a href="#">服务区</a></li>
+    </ul>
+</nav>
+
+<div id="container">
+    <!--<div id="book-menu">-->
+    <!--<ul class="book-class">-->
+    <!--<th >-->
+    <!--<li><a href="goBookStore.do?id=${category.key}"><label th:text="${categoryvalue.getName()}" ></label></a></li>-->
+    <!--</th>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div id="book-menu-toggle">-->
+    <!--查 看 菜 单-->
+    <!--<div id="toggle-btn"></div>-->
+    <!--</div>-->
+    <div id="book-container">
+        <h3 class="book-title"><a href="#">|<label th:text="${jieguo}" ></label></a></h3>
+        <ul class="book-lists">
+            <div th:if="${page.getList().size()} eq ${0}" style="text-align: center">
+                <label style="color: red ;text-align: center" >输入格式不对或者搜索内容不存在，请重试！</label>
+            </div>
+            <th th:each="comm1:${page.list}">
+                <li class="book-list">
+                    <a href="bookDetail.do?id=${book.getId()}" class="book-pic" target="_blank">
+                        <img src="<%=request.getContextPath()%>/img/book-list/article/${book.getBookImage().getId()}.jpg">
+                    </a>
+                    <a href="#" class="book-info">
+                        <h5 class="book-name"><label th:text="${comm1.getName()}"></label></h5>
+                        <span class="book-detail"><label th:text="${comm1.getDescrip()}"></label></span>
+                    </a>
+                    <span class="book-price">￥<label th:text="${comm1.getPrice()}"></label>
+						<a href="#" class="book-buy">立即下单</a>
+                </span>
+                </li>
+            </th>
+        </ul><!--  book-list end -->
+    </div> <!-- book-container end-->
+    <!--<span class="page-btn">-->
+    <!--<a href="?start=0" class="page-top">首页</a>-->
+    <!--<a href="?start=${page.getStart()-page.getCount()}" class="page-pre">上一页</a>-->
+    <!--<a href="?start=${page.getStart()+page.getCount()}" class="page-next">下一页</a>-->
+    <!--<a href="?start=${page.getEnd()}" class="page-end">尾页</a>-->
+    <!--</span>-->
+
+    <span class="page-btn">
+        <a th:href="@{/Searchcommodity(Search=${search},start=0)}">[首  页]</a>
+        <a th:href="@{/Searchcommodity(Search=${search},start=${page.pageNum -1})}">[上一页]</a>
+        <a th:href="@{/Searchcommodity(Search=${search},start=${page.pageNum+1})}">[下一页]</a>
+        <a th:href="@{/Searchcommodity(Search=${search},start=${page.pages})}">[末  页]</a>
+    </span>
+</div><!-- container end-->
+<footer>
+    <a href="#">©2018-2019 二手交易商城</a>
+    <a href="#">意见反馈&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;隐私权声明&nbsp;&nbsp;&nbsp;使用条款</a>
+</footer>
+</body>
+</html>

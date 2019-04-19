@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <title>密码注册界面</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+
+    <link rel="stylesheet" type="text/css" href="/css/css/style.css" />
+    <script type="text/javascript" src="/js/js/jquery-1.4.4.min.js"></script>
+    <style>
+        body {
+            height: 100%;
+            background: #999999;
+            overflow: hidden;
+        }
+
+        canvas {
+            z-index: -1;
+            position: absolute;
+        }
+    </style>
+    <script src="/js/js/jquery.js"></script>
+    <script src="/js/js/verificationNumbers.js"></script>
+    <script src="/js/js/Particleground.js"></script>
+    <script>
+        $(document).ready(function() {
+            //粒子背景特效
+            $('body').particleground({
+                dotColor: '#80FFFF',
+                lineColor: '#80FFFF'
+            });
+            //验证码
+            createCode();
+            //测试提交，对接程序删除即可
+            $(".submit_btn").click(function(){
+                localhost.href="index.jsp";
+            });
+        });
+    </script>
+
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            font-weight: 100;
+            margin-top: 40px;
+        }
+
+        #media {
+            width: 280px;
+            height: 250px;
+            margin: 10px auto 0;
+            border-radius: 30px;
+            overflow: hidden;
+            opacity: 0.7px;
+        }
+
+        #video {
+
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        #btn {
+            width: 160px;
+            height: 50px;
+            background: #03a9f4;
+            margin: 70px auto 0;
+            text-align: center;
+            line-height: 50px;
+            color: #fff;
+            border-radius: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<form action="/register" method="post">
+    <dl class="admin_login">
+        <dt>
+            <strong>人脸识别登录商店系统</strong><em>密码注册模式</em>  <strong>请注册</strong>
+        </dt>
+
+        <!--<div id="media">-->
+        <!--<video id="video" width="350" height="200" autoplay></video>-->
+        <!--<canvas id="canvas" width="400" height="300"></canvas>-->
+        <!--</div>-->
+
+        <div class="col-lg-10"></div>
+        <dt>
+            <input type="text" class="form-control"  name = "username" placeholder="请设置账户名"   />
+        </dt>
+        <dt>
+        <label th:text="${err2}" ></label>
+        <label   th:text="${err1}" ></label>
+        </dt>
+        <dt>
+            <input type="password" class="form-control" name = "password" placeholder="请设置密码" />
+        </dt>
+        <div class="col-lg-10"></div>
+        <dd>
+            <button class="submit_btn" ><a href="/registerface">切换注册方式</a></button>
+        </dd>
+        <dd>
+            <button class="submit_btn" type="submit">注册</button>
+            <!--<input type="button" href="registerface" value="注册" class="submit_btn"  />-->
+        </dd>
+
+    </dl>
+</form>
+</form>
+</body>
+</html>

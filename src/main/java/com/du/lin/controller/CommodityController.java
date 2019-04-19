@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,9 +69,9 @@ public class CommodityController {
 @RequestMapping("findcommodityiamgeBycommodity_id")
     public String findcommodityiamgeBycommodity_id(Model m,@RequestParam int commodity_id){
       //  List<commimage> image=commimageService.findBycommodityid(commodity_id);
-        List<commodity> commodity=commodityService.findlogin_idBycommodity_id(commodity_id);
+        int commodity=commodityService.findlogin_idBycommodity_id(commodity_id);
         //  commimage image1=image.get(0);
-          commodity iimage1=commodity.get(0);
+          int iimage1=commodity;
         //m.addAttribute("image",image1);
        m.addAttribute("loginid",iimage1);
         return "commodityimage";
@@ -136,9 +137,18 @@ public class CommodityController {
     }
 
     @RequestMapping("deletecomm")
-    public String deletecomm(Model m,int comm_id){
+    public String deletecomm(Model m, HttpServletRequest request,int comm_id, @RequestParam(value = "start",defaultValue = "0") int start, @RequestParam(value = "size",defaultValue="6") int size){
        commodityService.deletecommByid(comm_id);
 //        m.addAttribute("categoryLists",categoryList);
-        return "uploadsell";
+//        PageHelper.startPage(start,size,"id desc");
+//       int comm=commodityService.findlogin_idBycommodity_id(comm_id);
+//        List<commodity> shelf=commodityService.findcommodityBylogin_id(comm);
+//        PageInfo<commodity> page=new PageInfo<>(shelf);
+//        m.addAttribute("page", page);
+//        m.addAttribute("shelf",shelf);
+//        m.addAttribute("login",comm);
+        request.getSession().getAttribute("username");
+        request.getSession().getAttribute("id");
+        return "home";
     }
 }
