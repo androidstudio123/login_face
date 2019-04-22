@@ -104,13 +104,13 @@
         </ul>
     </div> <!-- sell-book-end -->
 
-    <span class="page-btn" style="text-align: center">
+    <span class="page-btn">
         <a th:href="@{/myTransanction(login_id=${session.id},start=0)}">[首  页]</a>
         <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum -1})}">[上一页]</a>
         <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pageNum+1})}">[下一页]</a>
         <a th:href="@{/myTransanction(login_id=${session.id},start=${page.pages})}">[末  页]</a>
     </span>
-
+</div>
 
 
     <!-- 我的求书 -->

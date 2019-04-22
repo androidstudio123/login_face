@@ -23,10 +23,6 @@ public class User {
     private String role;
     
     private int roleid;
-    
-    
-    
-    
 
     public int getRoleid() {
 		return roleid;

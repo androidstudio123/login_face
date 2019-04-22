@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.du.lin.bean.*;
 
+import com.du.lin.service.Categoryservice;
 import com.du.lin.utils.Userinfo;
 
 import org.slf4j.Logger;
@@ -36,6 +37,9 @@ public class PageController extends BaseController {
 	private LinProperties linProperties;
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	 private Categoryservice categoryservice;
 	@RequestMapping(value = "/login", method = { RequestMethod.GET })
 	public String login(HttpServletRequest request) {
 		request.setAttribute("kaptcha", linProperties.isKptchaswich());
@@ -127,6 +131,13 @@ public class PageController extends BaseController {
 	public String leaderLeavePage(HttpServletRequest request , Date start , Date end) {
 		
 		return "operationleavepage";
+	}
+
+	@RequestMapping(value = "/admincommodity", method = { RequestMethod.GET })
+	public String commidity(Model m,HttpServletRequest request) {
+		List<category> categoryList = categoryservice.findAll();
+		m.addAttribute("categorys", categoryList);
+		return "admincommodity";
 	}
 
 }

@@ -10,7 +10,7 @@ public class commodity {
     private  String quailty;
     private  int login_id;
     private  String originalPrice;
-private  String filename;
+    private  String filename;
 
 
     public int getId() {

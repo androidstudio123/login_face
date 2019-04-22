@@ -175,18 +175,18 @@ function buildgrid(deptinfo , roleinfo){
 
 				           },
 				           {
-				        	   name: 'dept',
-				        	   index: 'dept',
-				        	   editable: true,
-				        	   edittype:"select",
+				        	   name: 'deptid',
+				        	   index: 'deptid',
+				        	   editable:true,
+				        	   edittype :"select",
 				        	   editoptions:{
-				        		   value:deptinfo
+				        		   value: deptinfo
 				        	   },
 				        	   width: 80
 				           },
 				           {
-				        	   name: 'roleTip',
-				        	   index: 'roleTip',
+				        	   name: 'roleid',
+				        	   index: 'roleid',
 				        	   editable: true,
 				        	   edittype:"select",
 				        	   editoptions:{

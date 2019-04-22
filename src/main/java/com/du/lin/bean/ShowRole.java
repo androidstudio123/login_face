@@ -1,6 +1,4 @@
 package com.du.lin.bean;
-
-
 public class ShowRole {
     private Integer id;
 

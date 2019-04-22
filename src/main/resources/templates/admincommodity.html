@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 
-    <title>用户管理</title>
+    <title>商品管理</title>
 
     <link rel="shortcut icon" href="/login.ico"/>
-    
+
     <link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet"/>
     <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet"/>
     <link href="/css/animate.css" rel="stylesheet"/>
@@ -26,8 +26,6 @@
 
     <script src="/js/bootstrap.min.js?v=3.3.6"></script>
 
-
-
     <!-- jqGrid -->
     <script src="/js/plugins/jqgrid/i18n/grid.locale-cn.js?0820"></script>
     <script src="/js/plugins/jqgrid/jquery.jqGrid.min.js?0820"></script>
@@ -35,13 +33,13 @@
     <script src="/js/jquery-ui-1.10.4.min.js"></script>
     <script th:src="@{/js/jquery-ui.custom.min.js}"></script>
     <script th:src="@{/js/lin/dialog.js}"></script>
-    <script th:src="@{/js/lin/user.js}"></script>
+    <script th:src="@{/js/lin/admincommodity.js}"></script>
 
     <!-- 自定义js -->
     <script src="/js/content.js?v=1.0.0"></script>
 
-   	    <!-- Sweet alert -->
-	<link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"/>
+    <!-- Sweet alert -->
+    <link href="/css/plugins/sweetalert/sweetalert.css" rel="stylesheet"/>
     <script src="/js/plugins/sweetalert/sweetalert.min.js"></script>
 
     <style>
@@ -74,33 +72,33 @@
                 <table id="TblGrid_table_list_2" class="EditTable ui-common-table">
                     <tbody>
                     <tr rowpos="1" class="FormData" id="tr_username">
-                        <td class="CaptionTD"><label name="username">用户名</label></td>
+                        <td class="CaptionTD"><label name="username">商品名</label></td>
                         <td class="DataTD">&nbsp;
                             <div class="col-sm-9">
-                                <p id="changeusername" class="form-control-static">username</p>
+                                <p id="changeusername" class="form-control-static">name</p>
                             </div>
                         </td>
                     </tr>
                     <tr rowpos="2" class="FormData" id="tr_dept">
-                        <td class="CaptionTD"><label name="dept">部门</label></td>
+                        <td class="CaptionTD"><label name="dept">商品类型</label></td>
                         <td class="DataTD">
 
                             <select class="form-control" name="changedept">
-                                <option th:each="dept:${depts}" th:value="${dept.id}" th:text="${dept.name}"></option>
+                                <option th:each="category:${categorys}" th:value="${category.id}" th:text="${category.name}"></option>
                             </select>
 
                         </td>
                     </tr>
-                    <tr rowpos="3" class="FormData" id="tr_role">
-                        <td class="CaptionTD"><label name="roleTip">角色</label></td>
-                        <td class="DataTD">
-                            <select class="form-control" name="changerole">
-                                <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.tips}"></option>
-                              <!--   <option value="2">用户</option>
-                                <option value="1">超级管理员</option> -->
-                            </select>
-                        </td>
-                    </tr>
+                    <!--<tr rowpos="3" class="FormData" id="tr_role">-->
+                        <!--<td class="CaptionTD"><label name="roleTip">角色</label></td>-->
+                        <!--<td class="DataTD">-->
+                            <!--<select class="form-control" name="changerole">-->
+                                <!--<option th:each="role:${roles}" th:value="${role.id}" th:text="${role.tips}"></option>-->
+                                <!--&lt;!&ndash;   <option value="2">用户</option>-->
+                                  <!--<option value="1">超级管理员</option> &ndash;&gt;-->
+                            <!--</select>-->
+                        <!--</td>-->
+                    <!--</tr>-->
                     <tr class="FormData"  style="display: none" >
                         <td class="CaptionTD"></td>
                         <td colspan="1" class="DataTD"><input class="FormElement"
@@ -140,9 +138,9 @@
 </div>
 
 
-<div id="loading" style="text-align: center;">
-    <img alt="alt" th:src="@{img/loading.gif}"/>
-</div>
+<!--<div id="loading" style="text-align: center;">-->
+    <!--<img alt="alt" th:src="@{img/loading.gif}"/>-->
+<!--</div>-->
 
 
 <!-- 主体 -->
