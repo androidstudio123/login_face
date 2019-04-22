@@ -133,11 +133,16 @@ public class PageController extends BaseController {
 		return "operationleavepage";
 	}
 
-	@RequestMapping(value = "/admincommodity", method = { RequestMethod.GET })
+	@RequestMapping(value = "/admincommodity", method = { RequestMethod.GET})
 	public String commidity(Model m,HttpServletRequest request) {
 		List<category> categoryList = categoryservice.findAll();
 		m.addAttribute("categorys", categoryList);
 		return "admincommodity";
 	}
-
+	@RequestMapping(value = "/admincategory", method = { RequestMethod.GET})
+	public String category(Model m,HttpServletRequest request) {
+//		List<category> categoryList = categoryservice.findAll();
+//		m.addAttribute("categorys", categoryList);
+		return "admincategory";
+	}
 }
