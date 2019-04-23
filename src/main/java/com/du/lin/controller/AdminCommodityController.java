@@ -13,6 +13,11 @@ public class AdminCommodityController {
     @Autowired
     private AdminCommodityService adminCommodityService;
 
+    /**
+     * 展示所有的商品信息，获取页数和每页的行数，通过js传给jqgrid并展示。
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/admincommoditylist",method={RequestMethod.POST})
     public String deptList(HttpServletRequest request){

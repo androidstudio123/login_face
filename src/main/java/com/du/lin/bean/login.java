@@ -10,7 +10,7 @@ public class login {
 //    @Column(name="password")
     private String password;
     private String headphoto;
-    private  String sex;
+//    private  String sex;
     public int getId() {
         return id;
     }
@@ -43,11 +43,11 @@ public class login {
         this.headphoto = headphoto;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+//    public String getSex() {
+//        return sex;
+//    }
+//
+//    public void setSex(String sex) {
+//        this.sex = sex;
+//    }
 }

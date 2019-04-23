@@ -2,14 +2,12 @@ $(function() {
     $("#changesubmit").click(function() {
         modify();
     });
-
-
     console.log("hello");
     $.jgrid.defaults.styleUI = 'Bootstrap';
 
     $("#table_list_2").jqGrid(
         {
-            url : "/admincommoditylist",
+            url : "/adminloginlist",
             datatype : "json",
             mtype :"POST",
             height : "100%",
@@ -24,24 +22,20 @@ $(function() {
             shrinkToFit : true,
             rowNum : 10,
             rowList : [ 10, 20, 30 ],
-            colNames : [ '商品名','发布人','操作' ],
+            colNames : [ '用户名','操作' ],
             colModel : [
                 {
-                    name : 'name',
-                    index : 'name',
+                    name : 'username',
+                    index : 'username',
                     editable : true,
                     width : 90
                 },
-                {
-                    name : 'login_id',
-                    index : 'login_id',
-                    editable : true,
-                    edittype:"select",
-                    editoptions:{
-                        value:""
-                    },
-                    width : 90
-                },
+                // {
+                //     name : 'descrip',
+                //     index : 'descrip',
+                //     editable : true,
+                //     width : 90
+                // },
                 {
                     name : 'handle',
                     index : 'handle',
@@ -51,11 +45,11 @@ $(function() {
             ],
             pager : "#pager_list_2",
             viewrecords : true,
-            caption : "商品列表",
+            caption : "用户列表",
             add : true,
             edit : false,
             addtext : 'Add',
-            editurl : "/adddept",
+            editurl : " ",
             hidegrid : false,
             gridComplete : function() {
                 console.log("grid Complete");
@@ -64,22 +58,24 @@ $(function() {
                 for (var int = 0; int < ids.length; int++) {
                     var id = ids[int];
 
-                     var details="<a href='#' style='color:#f60' onclick='seedetails(" + id + ")'>查看商品详情</a>";//查看商品的全部信息
-                    var modify = "<a href='#' style='color:#f60' onclick='changedialogshow(" + id + ")'>修改商品信息</a>"; //这里的onclick就是调用了上面的javascript函数 Modify(id)
-                    var del = "<a href='#'  style='color:#f60' onclick='deldialog(" + id + ")' >删除商品</a>";
+
+                    var modify = "<a href='#' style='color:#f60' onclick='changedialogshow(" + id + ")'>修改商品类型</a>"; //这里的onclick就是调用了上面的javascript函数 Modify(id)
+                    var del = "<a href='#'  style='color:#f60' onclick='deldialog(" + id + ")' >删除商品类型</a>";
                     if (bodys[int].name == "未分配") {
                         del = "";
                         modify = "";
                     }
                     var result = $("#table_list_2").jqGrid("setRowData", id, {
-                        handle : modify + "&nbsp &nbsp" + del+ "&nbsp &nbsp" + details
+                        handle : modify + "&nbsp &nbsp" + del
                     });
                 }
             }
         });
+
     //	// Add selection
     //	$("#table_list_2").setSelection(4, true);
     //
+
     // Setup buttons
     $("#table_list_2").jqGrid('navGrid', '#pager_list_2', {
         edit : false,
@@ -105,7 +101,7 @@ function deldialog(id) {
 //		del(id);
 //    } ,function () {})
 
-    deletealert("" , "确定要删除此商品吗？" , function(){del(id);});
+    deletealert("" , "确定要删除此商品类型吗？" , function(){del(id);});
 
 
 }
@@ -121,7 +117,7 @@ function del(id) {
             console.log(data);
             if (data == "1") {
                 $("#table_list_2").trigger("reloadGrid");
-                successalert("" , "部门解散成功!");
+                successalert("" , "商品类型删除成功!");
             } else if (data == "4") {
                 warningalert("" , "不能删除默认部门!");
             } else {

@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminCategoryController {
     @Autowired
     private AdminCategoryService adminCategoryService;
+
+    /**
+     * 展示所有的商品类型信息，并设定数据的页数和每页展示的行数，传给js的jqgrid表格插件并展示给用户。
+     * @param request
+     * @return list
+     */
     @ResponseBody
     @RequestMapping(value="/admincategorylist",method={RequestMethod.POST})
     public String deptList(HttpServletRequest request){

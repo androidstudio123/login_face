@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.du.lin.dao.LoginMapper" >
+    <resultMap id="BaseResultMap" type="com.du.lin.bean.login" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="username" property="num" jdbcType="VARCHAR" />
+        <result column="password" property="name" jdbcType="VARCHAR" />
+        <result column="headphoto" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, usename, password,headphoto
+    </sql>
+</mapper>

@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AdminCommodityService {
      String getAllcommodity(int page , int count);
+     String commodityListForLoginAdd();
 }

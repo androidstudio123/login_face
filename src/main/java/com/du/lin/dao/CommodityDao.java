@@ -12,7 +12,7 @@ public interface CommodityDao {
     List<commodity> findByquailty(String quailty);
     List<commodity> Searchcommodity(String Search);
     List<commodity> findcommodityBylogin_id(int login_id);
-    int findlogin_idBycommodity_id(int id);
+    List<commodity> findlogin_idBycommodity_id(int id);
     void save(commodity commodity);
     void deletecommByid(int comm_id);
 }

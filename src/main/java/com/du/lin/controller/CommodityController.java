@@ -68,13 +68,13 @@ public class CommodityController {
 
 @RequestMapping("findcommodityiamgeBycommodity_id")
     public String findcommodityiamgeBycommodity_id(Model m,@RequestParam int commodity_id){
-      //  List<commimage> image=commimageService.findBycommodityid(commodity_id);
-        int commodity=commodityService.findlogin_idBycommodity_id(commodity_id);
-        //  commimage image1=image.get(0);
-          int iimage1=commodity;
-        //m.addAttribute("image",image1);
-       m.addAttribute("loginid",iimage1);
-        return "commodityimage";
+    //  List<commimage> image=commimageService.findBycommodityid(commodity_id);
+    List<commodity> commodity=commodityService.findlogin_idBycommodity_id(commodity_id);
+    //  commimage image1=image.get(0);
+    commodity iimage1=commodity.get(0);
+    //m.addAttribute("image",image1);
+    m.addAttribute("loginid",iimage1);
+    return "commodityimage";
     }
 
     @RequestMapping("myTransanction")

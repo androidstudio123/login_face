@@ -145,4 +145,8 @@ public class PageController extends BaseController {
 //		m.addAttribute("categorys", categoryList);
 		return "admincategory";
 	}
+	@RequestMapping(value = "/adminlogin",method = {RequestMethod.GET})
+	public String login(Model m,HttpServletRequest request){
+		return "adminlogin";
+	}
 }

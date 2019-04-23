@@ -41,7 +41,7 @@ public class BeanUtil {
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm");
 
 	/**
-	 * 将数据酷通知类 转成 前台通知类
+	 * 将数据库通知类 转成 前台通知类
 	 * 
 	 * @param notice
 	 * @return

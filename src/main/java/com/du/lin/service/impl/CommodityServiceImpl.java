@@ -58,8 +58,8 @@ public class CommodityServiceImpl  implements CommodityService {
     }
 
     @Override
-    public int findlogin_idBycommodity_id(int id) {
-       int list=commodityDao.findlogin_idBycommodity_id(id);
+    public List<commodity> findlogin_idBycommodity_id(int id) {
+       List<commodity> list=commodityDao.findlogin_idBycommodity_id(id);
         return list;
     }
 

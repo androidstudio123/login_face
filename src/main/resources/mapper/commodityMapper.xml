@@ -22,7 +22,7 @@
         select * from commodity where login_id=#{login_id}
     </select>
     <select id="findlogin_idBycommodity_id" resultType="com.du.lin.bean.commodity">
-        select login_id from commodity where id=#{id}
+        select * from commodity where id=#{id}
     </select>
     <insert id="save" parameterType="com.du.lin.bean.commodity">
         insert into commodity values(null,#{name},#{descrip},#{type},#{category_id},#{price},#{quailty},#{login_id},#{originalPrice},#{filename})
