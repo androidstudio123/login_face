@@ -82,7 +82,7 @@
                         </td>
                     </tr>
                     <tr rowpos="2" class="FormData" id="tr_dept">
-                        <td class="CaptionTD"><label name="dept">部门</label></td>
+                        <td class="CaptionTD"><label name="deptid">部门</label></td>
                         <td class="DataTD">
 
                             <select class="form-control" name="changedept">
@@ -92,7 +92,7 @@
                         </td>
                     </tr>
                     <tr rowpos="3" class="FormData" id="tr_role">
-                        <td class="CaptionTD"><label name="roleTip">角色</label></td>
+                        <td class="CaptionTD"><label name="roleid">角色</label></td>
                         <td class="DataTD">
                             <select class="form-control" name="changerole">
                                 <option th:each="role:${roles}" th:value="${role.id}" th:text="${role.tips}"></option>

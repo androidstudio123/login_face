@@ -40,8 +40,7 @@ public class UserController {
 		String page = request.getParameter("page"); // 取得当前页数,注意这是jqgrid自身的参数   
 	    String rows = request.getParameter("rows"); //
 		return service.getAllUserJson(Integer.parseInt(page) , Integer.parseInt(rows));
-		
-		
+
 	}
 	
 	@BizLog("添加用户")
@@ -58,8 +57,8 @@ public class UserController {
 		}
 		
 		String avator = request.getParameter("avator");
-		String dept = request.getParameter("dept");
-		String role = request.getParameter("roleTip");
+		String dept = request.getParameter("deptid");
+		String role = request.getParameter("roleid");
 	
 		service.addUser(username, avator, dept, role);
 		

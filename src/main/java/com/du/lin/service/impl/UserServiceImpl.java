@@ -1,5 +1,6 @@
 package com.du.lin.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.du.lin.bean.ShiroUser;
@@ -86,7 +87,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String getAllUserJson(int page , int count) {
-		List<ShiroUser> all = mapper.selectList(null);
+		List<ShiroUser> list = mapper.selectList(null);
+List<User> result=new ArrayList<User>();
+for(ShiroUser user:list){
+	StringBuilder deptname = new StringBuilder();
+	User sr = new User();
+	sr.setId(user.getId());
+	sr.setUsername(user.getUsername());
+	sr.setAvator(user.getAvator());
+	sr.setDept(user.);
+}
 		int toIndex = count * page;
 		if (all.size() < toIndex) {
 			toIndex = all.size();
