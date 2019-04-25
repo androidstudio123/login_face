@@ -15,6 +15,12 @@ import java.util.List;
 public class AdminLoginController {
     @Autowired
     private AdminLoginService adminLoginService;
+
+    /**
+     * 展示所有的用户信息，并设定好页数和每页的行数
+     * @param request
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/adminloginlist",method = {RequestMethod.POST})
     public String loginList(HttpServletRequest request){

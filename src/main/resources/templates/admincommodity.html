@@ -80,11 +80,11 @@
                         </td>
                     </tr>
                     <tr rowpos="2" class="FormData" id="tr_dept">
-                        <td class="CaptionTD"><label name="dept">商品类型</label></td>
+                        <td class="CaptionTD"><label name="type">商品类型</label></td>
                         <td class="DataTD">
 
                             <select class="form-control" name="changedept">
-                                <option th:each="category:${categorys}" th:value="${category.id}" th:text="${category.name}"></option>
+                                <option th:each="commodity:${commoditys}" th:value="${category.id}" th:text="${category.name}"></option>
                             </select>
 
                         </td>
