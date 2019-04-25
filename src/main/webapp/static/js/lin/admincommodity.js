@@ -24,7 +24,7 @@ $(function() {
             shrinkToFit : true,
             rowNum : 10,
             rowList : [ 10, 20, 30 ],
-            colNames : [ '商品名','发布人','操作' ],
+            colNames : [ '商品名','商品类型','发布人','操作' ],
             colModel : [
                 {
                     name : 'name',
@@ -33,13 +33,23 @@ $(function() {
                     width : 90
                 },
                 {
+                    name : 'type',
+                    index : 'type',
+                    editable : true,
+                    // edittype:"select",
+                    // editoptions:{
+                    //     value:""
+                    // },
+                    width : 90
+                },
+                {
                     name : 'login_id',
                     index : 'login_id',
                     editable : true,
-                    edittype:"select",
-                    editoptions:{
-                        value:""
-                    },
+                    // edittype:"select",
+                    // editoptions:{
+                    //     value:""
+                    // },
                     width : 90
                 },
                 {
@@ -55,7 +65,7 @@ $(function() {
             add : true,
             edit : false,
             addtext : 'Add',
-            editurl : "/adddept",
+            editurl : "",
             hidegrid : false,
             gridComplete : function() {
                 console.log("grid Complete");

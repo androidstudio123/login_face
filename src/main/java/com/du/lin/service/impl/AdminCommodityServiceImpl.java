@@ -2,9 +2,11 @@ package com.du.lin.service.impl;
 
 import com.du.lin.bean.commodity;
 import com.du.lin.bean.login;
+import com.du.lin.dao.CommodityDao;
 import com.du.lin.dao.CommodityMapper;
 import com.du.lin.dao.LoginMapper;
 import com.du.lin.service.AdminCommodityService;
+import com.du.lin.service.CommodityService;
 import com.du.lin.utils.JqgridUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class AdminCommodityServiceImpl implements AdminCommodityService {
+//    @Autowired
+//    CommodityDao commodityDao;
 @Autowired
     CommodityMapper commodityMapper;
     @Autowired
@@ -21,7 +25,7 @@ public class AdminCommodityServiceImpl implements AdminCommodityService {
     private LoginMapper loginMapper;
     public String getAllcommodity(int page , int count) {
         //List<commodity> list=commodityMapper.selectList(null);
-        List<commodity> all =commodityMapper.findAll();
+        List<commodity> all =commodityMapper.selectList(null);
         int toIndex = count * page;
         if (all.size() < toIndex) {
             toIndex = all.size();

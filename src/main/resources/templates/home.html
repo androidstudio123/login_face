@@ -201,7 +201,11 @@
                         <!--thymeleaf的锚点  th:href="@{值}"-->
                         <!--有的时候我们不止需要从model中进行取值，还需写字符串与model中的值进行拼接，写法为
 th:href="@{'字符串'+${model中的nam值}}"。-->
-                        <li><a th:href="@{'#'+${category.key}}" title="book-part-${category.key}" ><label th:text="${category.value}" ></label></a></li>
+                        <!--th:href="@{/gocomm(category_id=${category.key})}"-->
+                        <li>
+                            <a><label th:text="${category.value}" ></label></a>
+                            <a  class="more" th:href="@{/gocomm(category_id=${category.key})}">>更多 </a>
+                        </li>
                     </th>
                 </ul>
             </div>
@@ -232,20 +236,20 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
         <!-- 图书分类 -->
         <div id="container">
 
-            <th th:each ="category:${categories}">
-                <div class="book-part" th:id="${category.key}">
+            <!--<th th:each ="category:${categories}">-->
+                <!--<div class="book-part" th:id="${category.key}">-->
 
-                    <h3 class="book-title"><a href="#">| <label th:text="${category.value}" ></label></a></h3>
-                    <!--<a class="more" href="goBookStore?id=${category.key}">     > > 更多</a>-->
-                  <a  class="more" th:href="@{/gocomm(category_id=${category.key})}">    > > 更多 </a>
+                    <!--<h3 class="book-title"><a href="#">| <label th:text="${category.value}" ></label></a></h3>-->
+                    <!--&lt;!&ndash;<a class="more" href="goBookStore?id=${category.key}">     > > 更多</a>&ndash;&gt;-->
+                  <!--<a  class="more" th:href="@{/gocomm(category_id=${category.key})}">    > > 更多 </a>-->
 
 
                     <ul class="book-lists" >
                         <!--使用list进行循环，然后判断list.get(category_id)是否和category.key相等，相等则输出-->
                         <div th:each="comm,commstat:${commodities}"  >
 
-                        <div th:if="${comm.getCategory_id()} eq ${category.key} ">
-                            <div th:if="${commstat.count} lt ${7}">
+                        <!--<div th:if="${comm.getCategory_id()} eq ${category.key} ">-->
+                            <div th:if="${commstat.count} lt ${19}">
                             <li class="book-list" >
                                 <a th:href="@{/findcommodityiamgeBycommodity_id(commodity_id=${comm.getId()})}" class="book-pic" target="_blank">
                                     <img th:src="@{'/img/comm/'+${comm.getFilename()}}"/>
@@ -263,12 +267,12 @@ th:href="@{'字符串'+${model中的nam值}}"。-->
                             </div>
                         </div>
 
-                        </div>
+                        <!--</div>-->
 
                     </ul><!--  book-list end -->
 
                 </div><!--  book-part end -->
-            </th>
+            <!--</th>-->
         </div> <!-- contain <!-- container end-->
        <footer>
             <a href="#">©2018-2019 二手交易商城</a>

@@ -190,7 +190,7 @@ table {
 }
 
 .book-guide{
-    width: 200px;
+    width: 300px;
     height: 400px;
     border: 1px solid #ccc;
     display: flex;
@@ -207,7 +207,7 @@ table {
 }
 
 .book-class li{
-    width: 150px;
+    width: 200px;
     height: 28px;
     margin: 0 auto;
     padding-top: 5px;

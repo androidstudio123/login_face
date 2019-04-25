@@ -58,8 +58,8 @@ public class UserController {
 		}
 		
 		String avator = request.getParameter("avator");
-		String dept = request.getParameter("dept");
-		String role = request.getParameter("roleTip");
+		String dept = request.getParameter("deptid");
+		String role = request.getParameter("roleid");
 	
 		service.addUser(username, avator, dept, role);
 		

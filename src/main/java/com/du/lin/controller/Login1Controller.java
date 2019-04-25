@@ -60,6 +60,7 @@ public class Login1Controller {
         Map<Integer, String> categories = Categoryservice.listByMap();
         List<commodity> list1 = new ArrayList<>();
         list1 = commodityService.findAll();
+
         for (login log : list) {
             if (login.getUsername().equals(log.getUsername()) && login.getPassword().equals(log.getPassword())) {
                 m.addAttribute("username", login.getUsername());

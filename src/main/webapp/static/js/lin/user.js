@@ -168,6 +168,7 @@ function buildgrid(deptinfo , roleinfo){
 				        	   index: 'avator',
 				        	   editable: true,
 				        	   edittype:"select",
+                               formatter:'select',
 				        	   editoptions:{
 				        		   value:"0:女;1:男"
 				        	   },
@@ -179,6 +180,7 @@ function buildgrid(deptinfo , roleinfo){
 				        	   index: 'deptid',
 				        	   editable:true,
 				        	   edittype :"select",
+                               formatter:'select',
 				        	   editoptions:{
 				        		   value: deptinfo
 				        	   },
@@ -189,6 +191,7 @@ function buildgrid(deptinfo , roleinfo){
 				        	   index: 'roleid',
 				        	   editable: true,
 				        	   edittype:"select",
+                               formatter:'select',
 				        	   editoptions:{
 				        		   value:roleinfo
 				        	   },
